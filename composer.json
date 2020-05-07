@@ -1,0 +1,32 @@
+{
+    "name": "tonisormisson/",
+    "description": "A LimeSurvey Plugin to allow Export of survey to SurveyJs json",
+    "keywords": ["limesurvey"],
+    "homepage": "https://github.com/TonisOrmisson/limesurvey-export-surveyjs",
+    "type": "limesurvey-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tõnis Ormisson",
+            "email": "tonis@andmemasin.eu",
+            "homepage": "https://andmemasin.eu",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "league/html-to-markdown": "^4.9.1"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
+}

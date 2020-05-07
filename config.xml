@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <metadata>
+        <name>ExportSurveyJs</name>
+        <type>plugin</type>
+        <creationDate>2020-05-06</creationDate>
+        <last_update>2020-05-06</last_update>
+        <author>Tõnis Ormisson</author>
+        <authorUrl>https://andmemasin.eu</authorUrl>
+        <license>MIT</license>
+        <version>0.1.0</version>
+        <description><![CDATA[Core: Connect to external API]]></description>
+    </metadata>
+
+    <compatibility>
+        <version>3.0</version>
+        <version>4.0</version>
+    </compatibility>
+</config>

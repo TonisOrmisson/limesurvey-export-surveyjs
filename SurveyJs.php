@@ -26,14 +26,20 @@ class SurveyJs
      */
     private $surveyLanguages = [];
 
+    private $variablePregs = [];
+
 
     /** @var HtmlConverter */
     private $markupConverter;
 
-    public $enableFilters = false;
+    public $enableFilters = true;
 
     public $usePages = true;
 
+    /**
+     * SurveyJs constructor.
+     * @param Survey $survey
+     */
     public function __construct(Survey $survey)
     {
         $this->survey = $survey;
@@ -41,8 +47,11 @@ class SurveyJs
         $this->markupConverter = new HtmlConverter(['strip_tags' => true]);
     }
 
+
+
     public function populate() {
         $this->questions = $this->survey->baseQuestions;
+        $this->variablePregs();
         $this->array = [
             'locale' => $this->survey->language,
         ];
@@ -67,6 +76,9 @@ class SurveyJs
         return $out;
     }
 
+    /**
+     * @return array
+     */
     private  function  populateQuestions() {
         $out = [];
         if (!$this->usePages) {
@@ -119,6 +131,9 @@ class SurveyJs
         return $question;
     }
 
+    /**
+     * @return array
+     */
     private function populateLanguageSwitch() {
         if(count($this->surveyLanguages) === 1) {
             return [];
@@ -126,7 +141,7 @@ class SurveyJs
 
         $data = [
             'name' => 'language',
-            'title' => \Yii::t('app', "What is your preferred language?"),
+            'title' => Yii::t('app', "What is your preferred language?"),
             'type' => 'radiogroup',
             'isRequired' => true,
             'hideNumber' => true,
@@ -151,9 +166,14 @@ class SurveyJs
         return $data;
     }
 
+    /**
+     * @param array $data
+     * @return array
+     */
     private function populateMatrixQuestion(array  $data) {
         $data['type'] = 'matrix';
         $data['columnMinWidth'] = '200px';
+        $out =[];
 
         $answers = $this->question->answers;
         foreach ($answers as $answer) {
@@ -186,6 +206,10 @@ class SurveyJs
         return $data;
     }
 
+    /**
+     * @param array $data
+     * @return array
+     */
     private function populateSingleQuestion(array  $data) {
         switch ($this->question->type) {
             case QuestionType::QT_L_LIST_DROPDOWN:
@@ -216,7 +240,7 @@ class SurveyJs
             '.NAOK' => "",
             '&&' => "and",
         ];
-        $pregs = $this->variablePregs();
+        $pregs = $this->variablePregs;
 
 
         $r = str_replace(array_keys($statics), array_values($statics), $r);
@@ -229,11 +253,11 @@ class SurveyJs
      * @return array
      */
     private function variablePregs(){
-        $out =[];
         foreach ($this->questions as $question) {
-            $out[$question->title] = "{".$question->title."}";
+            $this->variablePregs[$question->title] = "{".$question->title."}";
+            //TODO need to do answers & subquestions BRFORE that
+            $this->variablePregs[$this->sgqa($question)] = "{".$question->title."}";
         }
-        return $out;
     }
 
     /**
@@ -303,6 +327,11 @@ class SurveyJs
     }
 
 
+    private function sgqa(Question $question) {
+        $sgq = $question->sid . "X" . $question->gid . "X" . $question->qid;
+        return $sgq;
+    }
+
     /**
      * @return false|string
      */
@@ -310,10 +339,6 @@ class SurveyJs
         return json_encode($this->array);
     }
 
-    /**
-     * @return array
-     */
-    public function getArray(){
-        return $this->array;
-    }
+
+
 }

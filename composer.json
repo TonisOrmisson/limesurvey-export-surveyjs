@@ -1,5 +1,5 @@
 {
-    "name": "tonisormisson/",
+    "name": "tonisormisson/limesurvey-export-surveyjs",
     "description": "A LimeSurvey Plugin to allow Export of survey to SurveyJs json",
     "keywords": ["limesurvey"],
     "homepage": "https://github.com/TonisOrmisson/limesurvey-export-surveyjs",

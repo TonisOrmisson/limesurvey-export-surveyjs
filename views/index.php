@@ -4,8 +4,8 @@
 ?>
 
 <script src="https://unpkg.com/jquery"></script>
-<script src="https://surveyjs.azureedge.net/1.7.4/survey.jquery.js"></script>
-<link href="https://surveyjs.azureedge.net/1.7.4/modern.css" type="text/css" rel="stylesheet"/>
+<script src="https://surveyjs.azureedge.net/1.7.5/survey.jquery.js"></script>
+<link href="https://surveyjs.azureedge.net/1.7.5/modern.css" type="text/css" rel="stylesheet"/>
 
 <div class="page-header">
     <span class="h1">Export SurveyJs JSON</span>

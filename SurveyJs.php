@@ -219,6 +219,7 @@ class SurveyJs
                 $data['type'] = 'dropdown';
                 break;
         }
+        $data['hasOther'] = true;
         $data['choices'] = $this->populateChoices();
         return $data;
     }

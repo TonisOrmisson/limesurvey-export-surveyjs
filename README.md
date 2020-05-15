@@ -15,7 +15,7 @@ git clone https://github.com/TonisOrmisson/limesurvey-export-surveyjs ExportSurv
 ```
 
 ```
-cd ExportSurveyJs && composer install
+cd ExportSurveyJs && composer install --no-dev
 ```
 
 ##

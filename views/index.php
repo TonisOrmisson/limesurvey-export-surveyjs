@@ -36,6 +36,7 @@
                 .querySelector('#surveyResult')
                 .textContent = "Result JSON:\n" + JSON.stringify(result.data, null, 3);
         });
+    //survey.currentPageNo = 4;
 
     $("#surveyElement").Survey({model: survey});
 

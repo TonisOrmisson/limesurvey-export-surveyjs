@@ -36,6 +36,8 @@ class SurveyJs
 
     public $usePages = true;
 
+    private $displayLanguage = '';
+
     /**
      * SurveyJs constructor.
      * @param Survey $survey
@@ -45,6 +47,7 @@ class SurveyJs
         $this->survey = $survey;
         $this->surveyLanguages = $survey->allLanguages;
         $this->markupConverter = new HtmlConverter(['strip_tags' => true]);
+        $this->displayLanguage = $survey->language;
     }
 
 
@@ -53,7 +56,7 @@ class SurveyJs
         $this->questions = $this->survey->baseQuestions;
         $this->variablePregs();
         $this->array = [
-            'locale' => $this->survey->language,
+            'locale' => $this->displayLanguage,
         ];
         if($this->usePages) {
             $this->array['pages'] = $this->populateGroups();
@@ -97,7 +100,7 @@ class SurveyJs
      */
     private function populateQuestion() {
         $this->questionl10ns = $this->question->questionl10ns;
-        $l10n = $this->questionl10ns[$this->survey->language];
+        $l10n = $this->questionl10ns[$this->displayLanguage];
         $question = [
             'name' => $this->question->title,
             'title' => $l10n->question . " :" . $this->question->type . " " . count($this->question->subquestions),
@@ -181,7 +184,7 @@ class SurveyJs
 
             $answer = [
                 'value' => $answer->code,
-                'text' => $translations[$this->survey->language]->answer,
+                'text' => $translations[$this->displayLanguage]->answer,
                 'maxWidth' => "1%"
             ];
             $out[] = $answer;
@@ -196,7 +199,7 @@ class SurveyJs
 
             $subQuestion = [
                 'value' => $subQuestion->title,
-                'text' => $translations[$this->survey->language]->question,
+                'text' => $translations[$this->displayLanguage]->question,
             ];
             $out[] = $subQuestion;
         }
@@ -296,7 +299,7 @@ class SurveyJs
 
             $subQuestion = [
                 'value' => $subQuestion->title,
-                'text' => $translations[$this->survey->language]->question,
+                'text' => $translations[$this->displayLanguage]->question,
             ];
             $out[] = $subQuestion;
         }
@@ -320,7 +323,7 @@ class SurveyJs
 
             $answer = [
                 'value' => $answer->code,
-                'text' => $translations[$this->survey->language]->answer,
+                'text' => $translations[$this->displayLanguage]->answer,
             ];
             $out[] = $answer;
         }

@@ -11,8 +11,7 @@
     <span class="h1">Export SurveyJs JSON</span>
 </div>
 <pre>
-    <?= CHtml::encode($model->getJson())?>
-
+    <?= CHtml::encode($model->getJson(true))?>
 </pre>
 
 <div id="surveyElement" style="display:inline-block;width:100%;"></div>
